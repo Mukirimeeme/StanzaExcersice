@@ -6,6 +6,7 @@ import Domain.TestData;
 import Pages.LandingPage;
 import Pages.RealCheckoutPage;
 import Pages.TaxCalculator;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -194,4 +195,10 @@ public class JungleTests extends LandingPage {
         return Message;
 
     }
+
+    @After
+    public void AfterMethod(){
+        driver.quit();
+    }
+
 }
