@@ -7,19 +7,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by imeeme on 9/30/16.
  */
 public class RealCheckoutPage extends LandingPage {
     WebDriver driver = new FirefoxDriver();
+    private static WebElement element = null;
 
-    public int ZebraCost(){
+
+    public static int ZebraCost(){
         int Zc = TestData.Zebra * ProductPrices.ZebraPrice;
 
         return Zc;
 
     }
-    public int CheckZebra(){
+    public static int CheckZebra(WebDriver driver){
         WebElement price = driver.findElement(By.xpath("/html/body/table[2]/tbody/tr[2]/td[2]"));
 
         String PriceText = price.getText();
@@ -34,13 +38,13 @@ public class RealCheckoutPage extends LandingPage {
 
 
     }
-    public int ElephantCost(){
+    public static int ElephantCost(){
         int Ec = TestData.Elephant * ProductPrices.ElephantPrice;
 
         return Ec;
     }
 
-    public int CheckElephant(){
+    public static int CheckElephant(WebDriver driver){
         WebElement price = driver.findElement(By.xpath("/html/body/table[2]/tbody/tr[4]/td[2]"));
 
         String PriceText = price.getText();
@@ -56,13 +60,13 @@ public class RealCheckoutPage extends LandingPage {
 
     }
 
-    public int GiraffeCost(){
+    public static int GiraffeCost(){
         int Gc = TestData.Giraffe * ProductPrices.GiraffePrice;
 
         return Gc;
     }
 
-    public int CheckGiraffe(){
+    public static int CheckGiraffe(WebDriver driver){
         WebElement Price = driver.findElement(By.xpath("/html/body/table[2]/tbody/tr[5]/td[2]"));
 
         String PriceText = Price.getText();
@@ -78,14 +82,14 @@ public class RealCheckoutPage extends LandingPage {
 
 
     }
-    public int LionCost(){
+    public static int LionCost(){
         int Lc = TestData.Lion * ProductPrices.LionPrice;
 
         return Lc;
 
     }
 
-    public int CheckLion(){
+    public static int CheckLion(WebDriver driver){
         WebElement Quantity = driver.findElement(By.xpath("/html/body/table[2]/tbody/tr[3]/td[2]"));
 
         String QuantityText = Quantity.getText();
@@ -101,13 +105,13 @@ public class RealCheckoutPage extends LandingPage {
 
     }
 
-    public int Subtotal (){
+    public static int Subtotal (){
         int ST = ZebraCost() + ElephantCost() + GiraffeCost() + LionCost();
 
         return ST;
     }
 
-    public double TotalTaxes(){
+    public static double TotalTaxes(WebDriver driver){
         WebElement tdElement = driver.findElement(By.id("taxes"));
 
         String descriptionText = tdElement.getText();
@@ -119,11 +123,32 @@ public class RealCheckoutPage extends LandingPage {
 
     }
 
-    public String Total(){
+    public static String  ExpectedTotal(){
+        double d =(Subtotal() +TaxCalculator.SalesTax(TestData.State));
+        DecimalFormat df = new DecimalFormat("#0.00");
+
+        String  Et = (String.valueOf((df.format(d))));
+
+
+        return Et;
+
+    }
+
+
+
+    public static String Total(WebDriver driver){
         WebElement tdElement = driver.findElement(By.id("total"));
 
         String descriptionText = tdElement.getText();
 
         return descriptionText;
+    }
+
+    public static String InvalidStateError(WebDriver driver){
+        WebElement PElement = driver.findElement(By.xpath("/ html/body/div/p"));
+        String Message = PElement.getText();
+
+        return Message;
+
     }
 }

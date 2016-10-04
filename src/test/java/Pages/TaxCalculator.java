@@ -9,7 +9,7 @@ import Domain.TestData;
 public class TaxCalculator extends RealCheckoutPage {
 
 
-    public double SalesTax(String State) {
+    public static double SalesTax(String State) {
         String stateCA ="CA";
         String stateNY = "NY";
         String stringMN = "MN";
