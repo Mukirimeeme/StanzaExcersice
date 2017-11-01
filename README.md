@@ -1,5 +1,5 @@
-# Jungle_Socks
-Jungle Socks is an online jungle themed socks company
+# Stanza
+creating an online event
 
 #To run these automated tests
 

@@ -12,55 +12,22 @@ import org.openqa.selenium.support.ui.Select;
 public class LandingPage {
 
 
-    WebDriver driver = new FirefoxDriver();
 
     private static WebElement element = null;
 
 
+    public static WebElement Apps(WebDriver driver){
 
-    public static WebElement Zebra(WebDriver driver){
-
-        element = driver.findElement(By.id("line_item_quantity_zebra"));
-
-        return element;
-
-    }
-
-    public static WebElement Lion(WebDriver driver){
-        element = driver.findElement(By.id("line_item_quantity_lion"));
-
-        return element;
-
-    }
-
-    public static WebElement Elephant(WebDriver driver){
-        element = driver.findElement(By.id("line_item_quantity_elephant"));
+        element = driver.findElement(By.xpath("//*[@id='gbwa']/div[1]/a"));
 
         return element;
     }
 
-    public static WebElement Giraffe(WebDriver driver){
-        element = driver.findElement(By.id("line_item_quantity_giraffe"));
+    public static WebElement CalendarApp(WebDriver driver){
+
+        element = driver.findElement(By.xpath("//*[@id='gb24']/span[1]"));
 
         return element;
     }
-
-    public static Select State(WebDriver driver){
-        Select dropdown = new Select (driver.findElement(By.name("state")));
-
-        return dropdown ;
-
-    }
-
-    public static WebElement Checkout(WebDriver driver){
-        element = driver.findElement(By.name("commit"));
-
-        return element;
-    }
-
-
-
-
-
-
+    
 }
